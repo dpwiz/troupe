@@ -104,6 +104,7 @@ import Control.Monad (MonadPlus, forM, unless, when)
 import Control.Monad.Error.Class (MonadError)
 import Control.Monad.Fix (MonadFix)
 import Control.Monad.IO.Class (MonadIO, liftIO)
+import Control.Monad.IO.Unlift (MonadUnliftIO)
 import Control.Monad.Primitive (PrimMonad)
 import Control.Monad.Random.Class (MonadRandom, MonadSplit)
 import Control.Monad.Reader.Class (MonadReader (..))
@@ -265,6 +266,7 @@ newtype Process r a = Process {unProcess :: ReaderT (ProcessEnv r) IO a}
       RandomGenM (IOGenM s) s,
       RandomGenM (AtomicGenM s) s,
       MonadTime,
+      MonadUnliftIO,
       PrimMonad
     )
 
